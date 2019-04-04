@@ -1,0 +1,71 @@
+<div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+  <!--
+    Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+    Tip 2: you can also add an image using data-image tag
+-->
+  <div class="logo">
+    <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+      Creative Tim
+    </a>
+  </div>
+
+  <div class="sidebar-wrapper">
+    <ul class="nav">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/dashboard">
+          <i class="material-icons">dashboard</i>
+          <p>Dashboard</p>
+        </a>
+      </li>
+      
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="material-icons">location_ons</i>
+            Categories
+        </a>
+        <div class="dropdown-menu" aria-labelledby="categoriesDropdownMenuLink">
+          <a class="dropdown-item" routerLink="/dashboard/categories">Categories</a>
+          <a class="dropdown-item" routerLink="/dashboard/categories/create">Create Category</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="usersDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="material-icons">location_ons</i>
+            Users
+        </a>
+        <div class="dropdown-menu" aria-labelledby="usersDropdownMenuLink">
+          <a class="dropdown-item" routerLink="/dashboard/users">Users</a>
+          <a class="dropdown-item" routerLink="/dashboard/users/create">Create User</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="postsDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="material-icons">location_ons</i>
+            Posts
+        </a>
+        <div class="dropdown-menu" aria-labelledby="postsDropdownMenuLink">
+          <a class="dropdown-item" routerLink="/dashboard/posts">Posts</a>
+          <a class="dropdown-item" routerLink="/dashboard/posts/create">Create Post</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="postsDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="material-icons">location_ons</i>
+            Comments
+        </a>
+        <div class="dropdown-menu" aria-labelledby="postsDropdownMenuLink">
+          <a class="dropdown-item" routerLink="/dashboard/comments">Comments</a>
+          <a class="dropdown-item" routerLink="/dashboard/comments/create">Create Comment</a>
+        </div>
+      </li>
+
+      
+    </ul>
+  </div>
+  
+</div>
