@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
-import { CategoriesActionTypes, LoadCategories, CreateCategory} from '../actions/categories.actions';
-
+import { CategoriesActionTypes, 
+    LoadCategories, CreateCategory, UpdateCategory, AddCategory,
+     RemoveCategory} from '../actions/categories.actions';
+    
 import { RestApiService } from '../../services/rest-api.service';
 import { switchMap, map, catchError, mergeMap } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -31,6 +33,26 @@ export class CategoriesEffects {
     mergeMap((action) => {
       return this.api_service.create_category(action.payload).pipe(
         map(response => new CreateCategory(response.category)),
+        catchError(err => this.handleError(err))
+      )
+    })
+  );
+
+  @Effect() update_category =this.actions$.pipe(
+    ofType<UpdateCategory>(CategoriesActionTypes.UpdateCategory),
+    mergeMap((action) => {
+      return this.api_service.update_category(action.payload).pipe(
+        map(response => new AddCategory(response.category)),
+        catchError(err => this.handleError(err))
+      )
+    })
+  );
+
+  @Effect() remove_category =this.actions$.pipe(
+    ofType<RemoveCategory>(CategoriesActionTypes.RemoveCategory),
+    mergeMap((action) => {
+      return this.api_service.delete_category(action.payload).pipe(
+        map(response => {}),
         catchError(err => this.handleError(err))
       )
     })

@@ -45,8 +45,8 @@ export class RestApiService {
     );
   }
 
-  delete_category(category_id: number): Observable<Category>{
-    return this.http.delete<Category>(`${this.BASE_URL}/categories`).pipe(
+  delete_category(category: Category): Observable<Category>{
+    return this.http.delete<Category>(`${this.BASE_URL}/categories/${category.id}`).pipe(
       catchError(err => this.handleError(err))
     );
   }
