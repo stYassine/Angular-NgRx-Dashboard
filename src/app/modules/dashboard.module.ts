@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-
 /// Core Angular Modules
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { FormsModule } from '@angular/forms';
 
@@ -20,6 +19,16 @@ import { PostsEffects } from '../store/effects/posts.effects';
 import { UsersEffects } from '../store/effects/users.effects';
 import { CommentsEffects } from '../store/effects/comments.effects';
 
+/// Guards
+import { AuthGuard } from '../guards/auth.guard';
+
+/// Interceptors
+import { TokenInterceptor } from '../interceptors/token-interceptor';
+
+/// Services
+import { CookieService } from 'ngx-cookie-service';
+import { RestApiService } from '../services/rest-api.service';
+import { TokenService } from '../services/token.service';
 
 /// Components
 import { MainDashboardComponent } from '../components/dashboard/main-dashboard/main-dashboard.component';
@@ -45,9 +54,12 @@ import { CommentsListComponent } from '../components/dashboard/comments/comments
 import { CreateCommentComponent } from '../components/dashboard/comments/create-comment/create-comment.component';
 import { UpdateCommentComponent } from '../components/dashboard/comments/update-comment/update-comment.component';
 
+
+
 /// Routes
 const routes: Routes =[
-  { path: 'dashboard', component: MainDashboardComponent, children: [
+  { path: 'dashboard', component: MainDashboardComponent, canActivate: [ AuthGuard ],
+  children: [
     { path: '', component: DashboardStatiticsComponent },
     { path: 'users', children: [
       { path: '', component: UsersListComponent },
@@ -83,6 +95,12 @@ const routes: Routes =[
     StoreModule.forFeature('users', fromUsers.reducer),
     StoreModule.forFeature('comments', fromComments.reducer),
     EffectsModule.forFeature([CategoriesEffects, PostsEffects, UsersEffects, CommentsEffects])
+  ],
+  providers: [
+      CookieService,
+      RestApiService,
+      TokenService,
+     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
   ],
   declarations: [
     MainDashboardComponent,

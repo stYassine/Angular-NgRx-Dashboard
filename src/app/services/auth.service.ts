@@ -16,10 +16,6 @@ export class AuthService {
   ) { }
 
   public BASE_URL ="http://127.0.0.1:8000/api";
-
-  set_token(){
-    
-  }
   
   register_user(user_data): Observable<any>{
     return this.http.post(`${this.BASE_URL}/register`, user_data);
@@ -27,10 +23,6 @@ export class AuthService {
 
   login_user(user_data): Observable<User>{
     return this.http.post(`${this.BASE_URL}/register`, user_data);
-  }
-
-  logout(){
-    console.log('The The Out');
   }
 
   handleError(err: HttpErrorResponse): Observable<any>{

@@ -9,12 +9,12 @@ import * as fromAuth from '../store/reducers/auth.reducer';
 import { EffectsModule, Actions } from '@ngrx/effects';
 import { AuthEffects } from '../store/effects/auth.effects';
 
+/// Services
+import { AuthService } from '../services/auth.service';
 
 /// Components
 import { LoginComponent } from '../components/auth/login/login.component';
 import { RegisterComponent } from '../components/auth/register/register.component';
-
-
 
 const routes: Routes =[
   { path: 'auth', component: LoginComponent },
@@ -28,6 +28,9 @@ const routes: Routes =[
     RouterModule.forRoot(routes),
     StoreModule.forFeature('auth', fromAuth.reducer),
     EffectsModule.forFeature([AuthEffects])
+  ],
+  providers: [
+    AuthService
   ],
   declarations: [LoginComponent, RegisterComponent],
   exports: [
