@@ -1,3 +1,17 @@
-<p>
-  login works!
-</p>
+<form (ngSubmit)="login()" [formGroup]="login_form">
+
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Email" name="email" id="email" formControlName="email">
+    <span class="text-danger" *ngIf="!login_form.get('email').valid && login_form.get('email').dirty">Email Is Required</span>
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Password" name="password" id="password" formControlName="password">
+    <span class="text-danger" *ngIf="!login_form.get('password').valid && login_form.get('password').dirty">Password Is Invalid</span>
+  </div>
+
+  <div class="form-group">
+    <input type="submit" value="Login" class="btn btn-info" [disabled]="!login_form.valid">
+  </div>
+
+</form>

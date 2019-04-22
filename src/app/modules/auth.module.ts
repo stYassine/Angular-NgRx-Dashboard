@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 /// NgRx
@@ -15,16 +16,19 @@ import { AuthService } from '../services/auth.service';
 /// Components
 import { LoginComponent } from '../components/auth/login/login.component';
 import { RegisterComponent } from '../components/auth/register/register.component';
+import { AuthContainerComponent } from '../components/auth/auth-container/auth-container.component';
 
 const routes: Routes =[
-  { path: 'auth', component: LoginComponent },
-  { path: 'auth/register', component: RegisterComponent },
-  { path: '**', component: LoginComponent },
+  { path: 'auth', component: AuthContainerComponent },
+  // { path: 'auth/register', component: RegisterComponent },
+  { path: '**', component: AuthContainerComponent },
 ];
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule, 
+    ReactiveFormsModule,
     RouterModule.forRoot(routes),
     StoreModule.forFeature('auth', fromAuth.reducer),
     EffectsModule.forFeature([AuthEffects])
@@ -32,7 +36,7 @@ const routes: Routes =[
   providers: [
     AuthService
   ],
-  declarations: [LoginComponent, RegisterComponent],
+  declarations: [LoginComponent, RegisterComponent, AuthContainerComponent],
   exports: [
     LoginComponent, 
     RegisterComponent,

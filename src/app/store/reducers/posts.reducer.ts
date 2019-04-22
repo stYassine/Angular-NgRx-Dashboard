@@ -45,13 +45,13 @@ export function reducer(state = initialState, action: PostsActions): State {
     case PostsActionTypes.UpdatePost:
       return {
         ...state,
-        posts: state.posts.map((post) => post._id === action.payload._id ? post = action.payload : null )
+        posts: state.posts.map((post) => post.id === action.payload.id ? post = action.payload : null )
       }
 
     case PostsActionTypes.RemovePost:
       return {
         ...state,
-        posts: state.posts.filter((post) => post._id != action.payload._id ) 
+        posts: state.posts.filter((post) => post.id != action.payload.id ) 
       }
 
     default:

@@ -44,13 +44,13 @@ export function reducer(state = initialState, action: CommentsActions): State {
     case CommentsActionTypes.UpdateComment:
       return {
         ...state,
-        comments: state.comments.map((comment) => comment._id === action.payload._id ? comment = action.payload : null )
+        comments: state.comments.map((comment) => comment.id === action.payload.id ? comment = action.payload : null )
       }
 
     case CommentsActionTypes.RemoveComment:
       return {
         ...state,
-        comments: state.comments.filter((comment) => comment._id != action.payload._id ) 
+        comments: state.comments.filter((comment) => comment.id != action.payload.id ) 
       }
 
     default:

@@ -44,13 +44,13 @@ export function reducer(state = initialState, action: UsersActions): State {
     case UsersActionTypes.UpdateUser:
       return {
         ...state,
-        users: state.users.map((user) => user._id === action.payload._id ? user = action.payload : null )
+        users: state.users.map((user) => user.id === action.payload.id ? user = action.payload : null )
       }
 
     case UsersActionTypes.RemoveUser:
       return {
         ...state,
-        users: state.users.filter((user) => user._id != action.payload._id ) 
+        users: state.users.filter((user) => user.id != action.payload.id ) 
       }
 
     default:
